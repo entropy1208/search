@@ -24,7 +24,7 @@ def count_keywords(doc, keywords):
         for i in ['title', 'stars', 'director']:
             k = map(unicode.lower, doc[i])
             for m in k:
-                if (j in m):
+                if (j == m):
                     count += 1    
     return count
 
@@ -40,6 +40,7 @@ for i in res.find():
 m = filter(lambda s : s['count'] > 0, res1.find())
 
 if (len(m) > 0):
+    m = sorted(m, key = lambda k : k['count']) 
     for i in m:
        r = res.find_one({"_id":i['doc_id']})
        for j in r:
